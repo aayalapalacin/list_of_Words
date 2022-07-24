@@ -1,51 +1,35 @@
-import React, {useContext} from "react";
+import React, {useState} from "react";
 import "../../styles/home.css";
-import { CharacterCard } from "../component/characterCard";
-import { PlanetCard } from "../component/planetCard";
-import { VehicleCard } from "../component/vehicleCard";
-import { Context } from "../store/appContext";
+
+const wordList = ['chair', 'height', 'racket', 'touch', 'tunic'];
 
 export const Home = () => {
-	const {store,actions} = useContext(Context);
-	console.log(store.favorites)
+	const [firstLetterArray,setFirstLetterArray] = useState([])
+	const [firstLetter,setFirstLetter] = useState("")
+
+	const firstArray = () =>{
+		wordList.map((word) => {
+			setFirstLetter(word)
+			const newFirstLetterArray = [...firstLetterArray,firstLetter]
+			setFirstLetterArray(newFirstLetterArray) 
+			console.log("firstArray",firstLetterArray)
+		})
+	}
+	console.log("first",firstLetter)
 	return(
-	<div className="text-center mt-3 container  ">
-		<h2 className="h2Title">Characters</h2>
-		<div className="characters horizontalScroll">
-			{store.characters.length > 0 &&  
-				store.characters.map( ( item,index)=>{
-					return(
-						
-						<CharacterCard addFavorite={actions.addFavorites} key={index} data= {item} id={index} />
-			
-
-					)
-				}) 
-			}
-		</div>
-		<h2 className="h2Title">Planets</h2>
-		<div className="planets d-flex horizontalScroll">
-			{store.planets.length > 0 && 
-			store.planets.map((item,index) =>{
+		<div>
+			{wordList.map( (word,index) => {
 				return(
-					<PlanetCard addFavorite={actions.addFavorites} key={index} data= {item} id={index} />
-					)
-		})}
-
-		</div>
-		<h2 className="h2Title">Vehicles</h2>
-		<div className="vehicles d-flex horizontalScroll">
-		{store.vehicles.length > 0 && 
-			store.vehicles.map((item,index) =>{
-				return(
-					<VehicleCard addFavorite={actions.addFavorites} key={index} data = {item} id={index}/>
+					<div key={index}>
+					<p> word: {word} </p>	
+					<p> first letter: {word.charAt(0) } </p>	
+					<p> last letter: {word.charAt(word.length - 1) } </p>	
+					<button onClick={firstArray}> click me</button>
+					</div>
 				)
-		})}
-		</div>			
-	</div>
-	
+			})}
+		</div>
 	)
-	};
-	
+		};
 
 
