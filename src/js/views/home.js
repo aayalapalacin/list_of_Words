@@ -2,52 +2,47 @@ import React from "react";
 import "../../styles/home.css";
 
 const wordList = ['chair', 'height', 'racket', 'touch', 'tunic'];
+const wordList2 = ['chair', 'racket', 'touch', 'height', 'tunic']
 
-
-const enumarate = () =>{
-	for (let i = 0; i <= wordList.length; i += 1) {
-		for(let k = i +1; k <= wordList.length; k++) {
-		if(wordList[i] != wordList[k]){
-				const compareArray1 = []
-				const compareArray2 = []
-				compareArray1.push(wordList[i]);
-				compareArray2.push(compareArray1.slice(wordList[0]));
-				// compareArray1.push(wordList[k])
-				console.log("CA1",compareArray1)
-				console.log("CA2",compareArray2)
-			
+const doesItChain = (arr) =>{
+	let numberOfTruths = []
+	for (let i = 0; i < arr.length; i++){
+		console.log(arr[i])
+		if(i === arr.length - 1) {
+			if(arr[i].charAt(arr[i].length-1)=== arr[0].charAt(0)){
+				numberOfTruths.push(true)
 			}
-		// wordObject.push({"index":i, "word": wordList[i]});
-		
+		}
+		else if(arr[i].charAt(arr[i].length-1) === arr[i+1].charAt(0)){
+			numberOfTruths.push(true)
+		}
+	}
 
-		
-	 }
-} 
+	console.log("numofTruth", numberOfTruths)		
+	if (numberOfTruths.length ===arr.length){
+		console.log("answer", true)
+	}
+	else{console.log("answer", false)}
+	 
 }
-enumarate()
 
-const test = () => {
-    var sub_array = [];
-    var super_array = [];
-    for (let i = 0; i <= wordList.length -1; i++) {
-		for (let j = i+1; j < wordList.length -1; j++) {
-			if(wordList[i] != wordList[j]){
-				sub_array.push(wordList[j]);
-				super_array.push(sub_array.slice(wordList[0]));
+const reOrder = (array)=>{
+	let updatedWordList= [array[0]]
+	for (let i = 0; i < array.length; i++){
+		if(i === array.length - 1) {
+			if(array[i].charAt(array[i].length-1)=== array[0].charAt(0)){
+				updatedWordList.push(array[i]);
 			}
-    }
+		}
+		else if(arr[i].charAt(arr[i].length-1) === arr[i+1].charAt(0)){
+			numberOfTruths.push(true)
+		}
+	}
+	doesItChain(updatedWordList)
+};
 
-
-
-console.log(compareArray);
-
-	console.log("CA1test",sub_array);
-	console.log("CA2test",super_array);
-	console.log("compareArray",compareArray);
-
-}
-}
-test()
+	reOrder(wordList)	
+	// compare(wordList)
 
 export const Home = () => {
 //    const compare = () =>{
